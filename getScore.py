@@ -118,7 +118,7 @@ while (True):
             score = None
             if score_text.isdigit():
                 # 成绩可能为浮点数
-                socre = float(score_text)
+                score = float(score_text)
             else:
                 # 可能是等级制
                 level2score = {
