@@ -113,7 +113,23 @@ while (True):
     tr_tags = soup_score_list.find_all('tr')
     for tr_tag in tr_tags[2:]:
         try:
-            score = int(tr_tag.find('a').text)
+            score_text = tr_tag.find('a').text
+
+            score = None
+            if score_text.isdigit():
+                # 成绩可能为浮点数
+                socre = float(score_text)
+            else:
+                # 可能是等级制
+                level2score = {
+                    '优秀': 95,
+                    '良好': 85,
+                    '中等': 75,
+                    '合格': 65,
+                    '不合格': 0
+                }
+                score = level2score[score_text]
+                
             if score >= 0 and score <= 100:
                 td_tags = tr_tag.find_all('td')
                 semester, name, credit = td_tags[1].text, td_tags[3].text, float(
