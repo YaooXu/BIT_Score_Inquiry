@@ -2,6 +2,7 @@ import time
 from bs4 import BeautifulSoup
 import requests
 import argparse
+import re
 
 parser = argparse.ArgumentParser(description='添加学号以及密码')
 parser.add_argument('--ID', type=str, required=True,
@@ -116,7 +117,10 @@ while (True):
             score_text = tr_tag.find('a').text
 
             score = None
-            if score_text.isdigit():
+        
+            p = re.compile('\d+(\.\d+)?')
+            # isdigt没法判断浮点数。。。
+            if p.match(score_text):
                 # 成绩可能为浮点数
                 score = float(score_text)
             else:
