@@ -13,6 +13,7 @@ parser.add_argument('--freq', type=int, default=-1,
                     help='查询频率，默认为-1，即只查询一次')
 args = parser.parse_args()
 
+# 需要根据实际情况更改网址
 url = 'https://webvpn.bit.edu.cn/login?cas_login=true'
 prefix = "https://webvpn.bit.edu.cn"
 
